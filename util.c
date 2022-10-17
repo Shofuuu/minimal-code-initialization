@@ -131,13 +131,13 @@ char *uphead(char *str){
     for(int x=0;x<size;x++){
         if( (str[x] >= 97) && (str[x] <= 122) ){
             data[x] = str[x]-32;
-            printf("[Debug:uphead:0] %d [%d]\r\n", data[x], x);
+            //printf("[Debug:uphead:0] %d [%d]\r\n", data[x], x);
         }else if( (str[x] == '.') || (str[x] == '-') || (str[x] == '_') ){
             data[x] = '_';
-            printf("[Debug:uphead:1] %d [%d]\r\n", data[x], x);
+            //printf("[Debug:uphead:1] %d [%d]\r\n", data[x], x);
         }else{
             data[x] = str[x];
-            printf("[Debug:uphead:2] %d [%d]\r\n", data[x], x);
+            //printf("[Debug:uphead:2] %d [%d]\r\n", data[x], x);
         }
     }
 
