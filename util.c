@@ -54,35 +54,35 @@ int wfile(struct parameters *p){
     if(cmp(format(p), "c", 1) == 0){
         for(int x=0;x<MAX_LINE_C;x++){
             if( (EOC_C) == x && p->maxadd > 0){
-                fprintf(file, "*\n* -- Additional Info -- \r\n");
+                fprintf(file, "*\n* -- Additional Info -- \n");
                 
                 for(int y=0;y<p->maxadd;y++){
-                    fprintf(file, "* %s\r\n", p->add[y]);
+                    fprintf(file, "* %s\n", p->add[y]);
                 }
             }
             
-            if(x == DATASET_DOC) fprintf(file, "%s%s\r\n", dataset_c[x], p->fname);
-            else if(x == DATASET_DATE) fprintf(file, "%s%s\r\n", dataset_c[x], gtime());
-            else if(x == DATASET_AUTHOR) fprintf(file, "%s%s\r\n", dataset_c[x], p->author);
-            else fprintf(file, "%s\r\n", dataset_c[x]);
+            if(x == DATASET_DOC) fprintf(file, "%s%s\n", dataset_c[x], p->fname);
+            else if(x == DATASET_DATE) fprintf(file, "%s%s\n", dataset_c[x], gtime());
+            else if(x == DATASET_AUTHOR) fprintf(file, "%s%s\n", dataset_c[x], p->author);
+            else fprintf(file, "%s\n", dataset_c[x]);
         }
     }else if(cmp(format(p), "h", 1) == 0){
         for(int x=0;x<MAX_LINE_H;x++){
             if( (EOC_H) == x && p->maxadd > 0){
-                fprintf(file, "*\n* -- Additional Info -- \r\n");
+                fprintf(file, "*\n* -- Additional Info -- \n");
                 
                 for(int y=0;y<p->maxadd;y++){
-                    fprintf(file, "* %s\r\n", p->add[y]);
+                    fprintf(file, "* %s\n", p->add[y]);
                 }
             }
             
-            if(x == DATASET_DOC) fprintf(file, "%s%s\r\n", dataset_h[x], p->fname);
-            else if(x == DATASET_DATE) fprintf(file, "%s%s\r\n", dataset_h[x], gtime());
-            else if(x == DATASET_AUTHOR) fprintf(file, "%s%s\r\n", dataset_h[x], p->author);
-            else if(x == DATASET_H_IFNDEF) fprintf(file, "%s%s\r\n", dataset_h[x], uphead(p->fname));
-            else if(x == DATASET_H_DEFINE) fprintf(file, "%s%s\r\n", dataset_h[x], uphead(p->fname));
-            else if(x == DATASET_H_ENDIF) fprintf(file, "%s%s\r\n", dataset_h[x], uphead(p->fname));
-            else fprintf(file, "%s\r\n", dataset_h[x]);
+            if(x == DATASET_DOC) fprintf(file, "%s%s\n", dataset_h[x], p->fname);
+            else if(x == DATASET_DATE) fprintf(file, "%s%s\n", dataset_h[x], gtime());
+            else if(x == DATASET_AUTHOR) fprintf(file, "%s%s\n", dataset_h[x], p->author);
+            else if(x == DATASET_H_IFNDEF) fprintf(file, "%s%s\n", dataset_h[x], uphead(p->fname));
+            else if(x == DATASET_H_DEFINE) fprintf(file, "%s%s\n", dataset_h[x], uphead(p->fname));
+            else if(x == DATASET_H_ENDIF) fprintf(file, "%s%s\n", dataset_h[x], uphead(p->fname));
+            else fprintf(file, "%s\n", dataset_h[x]);
         }
     }
 
