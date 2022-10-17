@@ -8,15 +8,9 @@ build : minimal.c dataset.c parameters.c
 	@gcc -Wall -o minimal minimal.o dataset.o util.o parameters.o
 	@echo "Build OK"
 clean : 
-	@rm -rf minimal main.c main.h *.o
+	@rm -rf minimal main.c main.h *.o createNewFile.h
 	@echo "clean OK"
 test :
-	@./minimal -h
-	@echo "test 1 OK"
-	@./minimal -f "main.c"
-	@more main.c
-	@echo "test 2 OK"
-	@./minimal -f "main.c" -a "Shofuwan"
-	@more main.c
-	@echo "test 3 OK"
-	@rm -rf main.c
+	@./minimal -f "x.h"
+	@more x.h
+	@rm -rf x.h

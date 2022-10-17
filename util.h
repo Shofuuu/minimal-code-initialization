@@ -19,5 +19,6 @@ char *rev(char *str);
 int cmp(char *src, const char *str, size_t size);
 size_t len(const char *str);
 char *uphead(char *str);
+int cpy(char *dest, const char *src, size_t size);
 
 #endif // UTIL_H

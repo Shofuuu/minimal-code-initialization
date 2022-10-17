@@ -67,6 +67,11 @@ int wfile(struct parameters *p){
             else fprintf(file, "%s\n", dataset_c[x]);
         }
     }else if(cmp(format(p), "h", 1) == 0){
+        char *upper = malloc(len((const char*)p->fname) * sizeof(char));
+        char *libdef = malloc(len((const char*)p->fname) * sizeof(char));
+        upper = uphead(p->fname);
+        cpy(libdef, (const char*)upper, len((const char*)p->fname) * sizeof(char));
+
         for(int x=0;x<MAX_LINE_H;x++){
             if( (EOC_H) == x && p->maxadd > 0){
                 fprintf(file, "*\n* -- Additional Info -- \n");
@@ -79,9 +84,9 @@ int wfile(struct parameters *p){
             if(x == DATASET_DOC) fprintf(file, "%s%s\n", dataset_h[x], p->fname);
             else if(x == DATASET_DATE) fprintf(file, "%s%s\n", dataset_h[x], gtime());
             else if(x == DATASET_AUTHOR) fprintf(file, "%s%s\n", dataset_h[x], p->author);
-            else if(x == DATASET_H_IFNDEF) fprintf(file, "%s%s\n", dataset_h[x], uphead(p->fname));
-            else if(x == DATASET_H_DEFINE) fprintf(file, "%s%s\n", dataset_h[x], uphead(p->fname));
-            else if(x == DATASET_H_ENDIF) fprintf(file, "%s%s\n", dataset_h[x], uphead(p->fname));
+            else if(x == DATASET_H_IFNDEF) fprintf(file, "%s%s\n", dataset_h[x], upper);
+            else if(x == DATASET_H_DEFINE) fprintf(file, "%s%s\n", dataset_h[x], upper);
+            else if(x == DATASET_H_ENDIF) fprintf(file, "%s%s\n", dataset_h[x], upper);
             else fprintf(file, "%s\n", dataset_h[x]);
         }
     }
@@ -120,38 +125,36 @@ size_t len(const char *str){
 }
 
 char *uphead(char *str){
-    int valid = -1;
-    char *data = NULL;
     size_t size = len((const char*)str);
+    char *data = malloc(size * sizeof(char));
 
-    /* Check the str data is a valid alphabet */
     for(int x=0;x<size;x++){
-        if( (str[x] >= 65 && str[x] <= 90) || 
-            (str[x] >= 97 && str[x] <= 122) || 
-            (str[x] == '.') ||
-            (str[x] == '-') ||
-            (str[x] == '_') ){
-            valid = 0;
+        if( (str[x] >= 97) && (str[x] <= 122) ){
+            data[x] = str[x]-32;
+            printf("[Debug:uphead:0] %d [%d]\r\n", data[x], x);
+        }else if( (str[x] == '.') || (str[x] == '-') || (str[x] == '_') ){
+            data[x] = '_';
+            printf("[Debug:uphead:1] %d [%d]\r\n", data[x], x);
         }else{
-            valid = -1;
+            data[x] = str[x];
+            printf("[Debug:uphead:2] %d [%d]\r\n", data[x], x);
         }
     }
 
-    if(valid != -1){
-        data = malloc(size * sizeof(char));
-
-        for(int x=0;x<size;x++){
-            if( str[x] >= 65 && str[x] <= 90 ){
-                data[x] = str[x];
-            }else if( str[x] >= 97 && str[x] <= 122 ){
-                data[x] = str[x]-32;
-            }else if( (str[x] == '.') || (str[x] == '-') || (str[x] == '_') ){
-                data[x] = '_';
-            }
-        }
-    }
+    //char *ndata = malloc(size * sizeof(char));
+    //cpy(ndata, (const char*)data, size);
 
     return data;
+}
+
+int cpy(char *dst, const char *src, size_t size){
+    int valid = 0;
+
+    for(int x=0;x<size;x++){
+        *dst++ = *src++;
+    }
+
+    return valid;
 }
 
 
