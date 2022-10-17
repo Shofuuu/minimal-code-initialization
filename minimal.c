@@ -11,7 +11,7 @@
 #include "parameters.h"
 #include "util.h"
 
-#define MAX_HELPMSG 7
+#define MAX_HELPMSG 8
 
 int main(int argc, char *argv[]){
     if(argc < 2){
@@ -29,6 +29,7 @@ int main(int argc, char *argv[]){
         "\nExample : \r\n",
         " minimal -f \"main.c\"\r\n",
         " minimal -f \"main.c\" -a \"Shofuwan\"\r\n",
+        " minimal -f \"main.h\" -a \"Anwar\" -i \"add lines 0\" -i \"add lines 1\"\r\n",
         "\nSupported files :\r\n",
         SUPPORTED_FILES
     };
