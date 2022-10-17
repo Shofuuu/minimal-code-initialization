@@ -150,6 +150,8 @@ char *uphead(char *str){
 int cpy(char *dst, const char *src, size_t size){
     int valid = 0;
 
+    if(size < 1) valid = -1;
+
     for(int x=0;x<size;x++){
         *dst++ = *src++;
     }
