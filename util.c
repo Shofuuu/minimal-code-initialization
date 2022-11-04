@@ -51,7 +51,7 @@ int wfile(struct parameters *p){
 
     if(file == NULL) valid = -1;
 
-    if(cmp(format(p), "c", 1) == 0){
+    if(cmp(format(p), "c", 1) == 0 || cmp(format(p), "cpp", 3) == 0){
         for(int x=0;x<MAX_LINE_C;x++){
             if( (EOC_C) == x && p->maxadd > 0){
                 fprintf(file, "*\n* -- Additional Info -- \n");
@@ -66,7 +66,7 @@ int wfile(struct parameters *p){
             else if(x == DATASET_AUTHOR) fprintf(file, "%s%s\n", dataset_c[x], p->author);
             else fprintf(file, "%s\n", dataset_c[x]);
         }
-    }else if(cmp(format(p), "h", 1) == 0){
+    }else if(cmp(format(p), "h", 1) == 0 || cmp(format(p), "hpp", 3) == 0){
         char *upper = malloc(len((const char*)p->fname) * sizeof(char));
         char *libdef = malloc(len((const char*)p->fname) * sizeof(char));
         upper = uphead(p->fname);
