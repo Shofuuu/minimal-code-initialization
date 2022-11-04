@@ -1,6 +1,8 @@
 #ifndef PARAMETERS_H
 #define PARAMETERS_H
 
+#define SOFTWARE_VERSION    "1.3"
+
 #define MAX_SUPPORTED_FILES 4
 #define SUPPORTED_FILES     "*.c, *.cpp, *.h, *.hpp\r\n"
 #define SUPPORTED_ARRAY     "c", "cpp", "h", "hpp"

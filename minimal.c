@@ -25,7 +25,7 @@ int main(int argc, char *argv[]){
 
     const char *helpmsg[MAX_HELPMSG] = {
         "Help information : \r\n",
-        " minimal [h, f, a, i]\r\n",
+        " minimal [h, f, a, i, v]\r\n",
         "\nExample : \r\n",
         " minimal -f \"main.c\"\r\n",
         " minimal -f \"main.c\" -a \"Shofuwan\"\r\n",
@@ -36,7 +36,7 @@ int main(int argc, char *argv[]){
 
     struct parameters p = { NULL, {NULL}, NULL, 0 };
 
-    while((opt = getopt(argc, argv, "hf:a:i:")) != -1){
+    while((opt = getopt(argc, argv, "hvf:a:i:")) != -1){
         switch(opt){
             case 'h':
                 for(int x=0;x<MAX_HELPMSG;x++) printf("%s", helpmsg[x]);
@@ -70,6 +70,12 @@ int main(int argc, char *argv[]){
                 }
 
                 valid++;
+            break;
+
+            case 'v':
+                printf("[Info:version] Version : %s\r\n", (const char*)SOFTWARE_VERSION);
+
+                valid = 0;
             break;
 
             case '?':
